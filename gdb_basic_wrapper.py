@@ -1,8 +1,6 @@
 import pexpect
 import gdb_constants
 
-DEBUG_CURRENT_SELECTED_GDB = "gdb"
-
 
 class GdbClientBasicProccessWrapper:
     """
