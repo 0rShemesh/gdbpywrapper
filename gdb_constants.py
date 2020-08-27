@@ -1,0 +1,1 @@
+GDB_START_LINE = r"\(gdb\)\s+"
