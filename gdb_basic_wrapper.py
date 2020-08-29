@@ -17,6 +17,17 @@ class GdbClientBasicProccessWrapper:
         self.process.expect(gdb_constants.GDB_START_LINE,timeout=timeout)
         return self.process.before
     
+    def raw_read(self,timeout=5):
+        buffer = b""
+        counter = 0
+        while timeout  > counter:
+            try:
+                buffer = buffer + self.process.read_nonblocking(1,0.001)
+                counter = 0
+            except pexpect.exceptions.TIMEOUT:
+                counter += 0.001
+        return buffer
+            
     def go_interactive_session(self):
         self.process.interact()
 
