@@ -12,6 +12,10 @@ class GDBClient(GdbClientBasicProccessWrapper):
 
     def run(self):
         super().write("run")
+        return super().read(15)
+    
+    def send_raw_command(self,command_of_gdb : str):
+        super().write(commmand_to_send=commmand_to_send)
 
         
     

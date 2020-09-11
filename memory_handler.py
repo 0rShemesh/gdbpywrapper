@@ -1,4 +1,4 @@
-
+from typing import Generator
 from gdb_basic_wrapper import GdbClientBasicProccessWrapper
 from gdb_command_parser.gdb_text_parser import get_command_text
 from gdb_command_parser.memory_read.read_memory import parse_examining_memory
@@ -27,12 +27,22 @@ class MemoryHandler:
 
         return self.do_examining_memory_raw(examining_format,address if isinstance(address,str) else str(address))
 
-    def read_bytes(self, address: int, amount: int = 1):
+    def read_bytes(self, address: int, amount: int = 1) -> Generator[int]:
+        """
+        read bytes(one bytes array) from the received address
+        address - the address that you want to read from
+        amount  - the amount of data you want to read from this address
+        """
         returned_data = self.do_examining_memory(
             repeat_count=amount, unit_size="b", address=address)
         return parse_examining_memory(*returned_data)
 
-    def read_words(self, address: int, amount: int = 1):
+    def read_words(self, address: int, amount: int = 1) -> Generator[int]:
+        """
+        read words(four bytes array) from the received address
+        address - the address that you want to read from
+        amount  - the amount of data you want to read from this address
+        """
         returned_data = self.do_examining_memory(
             repeat_count=amount, unit_size="w", address=address)
         return parse_examining_memory(*returned_data)
