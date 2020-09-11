@@ -15,10 +15,11 @@ class MemoryHandler:
         """
         string_to_send = "x"
         if FMT:
-            string_to_send +"/" + format(FMT)
+            string_to_send += "/" + format(FMT)
         string_to_send += " " + ADDRESS
+        
         self._process.write(string_to_send)
-        return get_command_text(self._process.read())
+        return get_command_text(self._process.read())[1]
 
     def do_examining_memory(self, repeat_count=1, display_format="x", unit_size="b", address=0x7ffffff00000):
 
