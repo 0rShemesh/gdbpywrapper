@@ -1,6 +1,6 @@
 # GDB Wrapper
 
-Python Wrapper to GDB that parse
+GDB Wrapper to Python that parse
 the output of GDB command.
 
 ## Why I opened the repository
